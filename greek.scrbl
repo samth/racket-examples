@@ -1,5 +1,7 @@
 #lang scribble/manual
 
+@(require scribblings/reference/mz)
+
 @title{Printing the Greek alphabet}
 
 @margin-note{Throughout this document, all of the code is hyperlinked
@@ -18,7 +20,7 @@
 
 This program, like all the others we will see, start with @racketfont{#lang} on
 the first line.  
-@margin-note*{For more about @racketfont{#lang}, see }
+@guideintro["hash-lang"]{the @racketfont{#lang} notation}
 This line specifies the @emph{language} that we will use for
 the rest of the module.  In this case, the language is @racketmodname[racket],
 which is the default language that we use for Racket programs.  The
