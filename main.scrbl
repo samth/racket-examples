@@ -11,3 +11,4 @@ they work and the features of Racket they use.
              see what it does.}
 
 @include-section["greek.scrbl"]
+@include-section["echo.scrbl"]

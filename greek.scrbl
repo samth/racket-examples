@@ -40,7 +40,8 @@ The main body of this program is a @racket[for] loop. The @racket[for] form is
 for iterating over some sequence of values, without producing any result. When
 you need to produce a result, use a variant of @racket[for] such as 
 @racket[for/list], @racket[for/hash], or @racket[for/vector], which
-produce @tech{lists}, @racket{hashes}, and @tech{vectors} respectively.
+produce @tech[#:doc 'scribblings/guide/guide]{lists}, @tech{hashes}, 
+and @tech{vectors} respectively.
 
 The first part of a @racket[for] loop describes what it iterates over with 
 a sequence of clauses.  Here, the only clause is @racket[[i 25]], which means
