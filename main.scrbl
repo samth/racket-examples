@@ -14,3 +14,4 @@ they work and the features of Racket they use.
 @include-section["echo.scrbl"]
 @include-section["sources.scrbl"]
 @include-section["insta.scrbl"]
+@include-section["unique.scrbl"]
