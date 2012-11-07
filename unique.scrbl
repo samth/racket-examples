@@ -5,6 +5,8 @@
 @title{Unique lines}
 
 @codeblock{
+#lang racket
+
 ;; Report each unique line from stdin
 (let ([saw (make-hash)])
   (for ([line (in-lines)])
@@ -13,11 +15,19 @@
     (hash-set! saw line #t)))
 }
 
-This program forever reads lines from standard input, and prints the ones it hasn't seen before.
+This program keeps reading lines from standard input, and prints only the lines it hasn't seen before.
 
-First, we create a hashtable with @racket[make-hash], to keep track of the lines we've seen. 
-Then, we use a @racket[for] loop to iterate over the sequence of lines read from @racketfont{stdin} with @racket[(in-lines)]. Each line is bound to @racket[line] in the loop.
+To keep track of the lines we've seen so far, we start by creating a hash table, named @racket[saw], with @racket[make-hash].
+Then, we use a @racket[for] loop to iterate over the lines read from @racketfont{stdin} with @racket[(in-lines)]
+and bind each line to @racket[line] in the loop.
 
-@margin-note*{Note that we can provide a default value for @racket[hash-ref] to return, in case the key is not found. Here we've use @racket[#f], the false value, so @racket[hash-ref] is always true or false.}
-To check if we've seen @racket[line] before, we look in our hashmap with @racket[hash-ref]. 
-If @racket[line] is there, @racket[(hash-ref saw line #f)] will return true and we will print @racket[line] with @racket[displayln].Finally, to remember the line we've just read, we store it in the hashtable with @racket[hash-set!].
+This loop will keep on going until @racket[eof] is read or until the program is forcibly terminated (because
+@racket[(in-lines)] keeps reading until @racket[eof]). 
+
+@margin-note*{Note that we can provide a default return value for @racket[hash-ref], in case the key is not found. 
+Here, we use @racket[#f], the false value, so @racket[hash-ref] always returns a @racket[boolean].}
+
+To check if we've seen @racket[line] before, we look in our hash table with @racket[hash-ref]. 
+Unless @racket[line] is in the table, we print it to @racket[stdout] with @racket[displayln]. 
+Finally, because we need to remember every line we see, we store it in the @racket[saw] hash table 
+with @racket[hash-set!].
