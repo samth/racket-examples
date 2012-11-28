@@ -18,21 +18,17 @@ In this program, we use @racket[Lazy Racket] to define an "infinite" fibonacci
 sequence, and to print its 1001st element.
 
 The first line of this program specifies that we are using the 
-@racket[Lazy Racket] language. In @racket[Lazy Racket], expressions are only 
-evaluated when their results are needed.
+@racket[Lazy Racket] language.
+@margin-note*{ Once an expression is evaluated, its value is cached and the 
+              expression need not be evaluated again }
+In @racket[Lazy Racket], expressions are only evaluated when their results 
+are needed.
 
-Then, we define @racket[fibs] as a lazy list with @racket[list*]. 
-Its first 2 elements are 1, its remaining elements are defined by the expression 
-@racket[(map + fibs (cdr fibs))]. The @racket[map] function applies @racket[+] 
-to lists @racket[fibs] and @racket[(cdr fibs)], this adds each element of 
-@racket[fibs] with the next, to produce a third element. 
-
-@margin-note*{ Accessing the nth element of a lazy list forces evaluation of 
-              its first n elements. These values are cached and do not need 
-              to be re-evaluated when we look them up again. }
+Then, we define @racket[fibs] as a lazy list with @racket[list*], 
+which builds a list out of its arguments (the last argument becomes the tail of the list).
+Here we create a list whose first 2 elements are 1, and whose tail is defined by the expression @racket[(map + fibs (cdr fibs))]. The tail can refer to @racket[fibs] because it isn't immediately evaluated. This expression will be evaluated as needed whenever more elements of @racket[fibs] are accessed. This shows how laziness can be used to define cyclic data structures. 
 
 
-Then, we @racket[print] the 1001st element of @racket[fibs], which we access 
-with @racket[(list-ref fibs 1000)] (note that list indexes start at 0). 
-
-
+@margin-note*{ Note that list indexes start at 0 }
+In the last line, we access the 1001st element of @racket[fibs] with 
+@racket[(list-ref fibs 1000)] and @racket[print] it.
