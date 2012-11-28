@@ -25,8 +25,13 @@ In @racket[Lazy Racket], expressions are only evaluated when their results
 are needed.
 
 Then, we define @racket[fibs] as a lazy list with @racket[list*], 
-which builds a list out of its arguments (the last argument becomes the tail of the list).
-Here we create a list whose first 2 elements are 1, and whose tail is defined by the expression @racket[(map + fibs (cdr fibs))]. The tail can refer to @racket[fibs] because it isn't immediately evaluated. This expression will be evaluated as needed whenever more elements of @racket[fibs] are accessed. This shows how laziness can be used to define cyclic data structures. 
+which builds a list out of its arguments (the last argument becomes the tail 
+of the list). Here we create a list whose first 2 elements are 1, and whose 
+tail is defined by the expression @racket[(map + fibs (cdr fibs))]. The tail 
+can refer to @racket[fibs] because it isn't immediately evaluated. This 
+expression will be evaluated as needed whenever more elements of @racket[fibs] 
+are accessed. This shows how laziness can be used to define cyclic data 
+structures. 
 
 
 @margin-note*{ Note that list indexes start at 0 }
